@@ -2,7 +2,7 @@
 Very simple online store app designed for learning JavaScript and React.    
 
 ### Technologies
-- server side implementations with node js 
+- server side implemented with node js 
 - postgres as database 
 - reactjs on frontend 
 - react-bootstrap as css framework 
