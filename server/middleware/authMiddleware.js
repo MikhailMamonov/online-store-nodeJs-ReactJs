@@ -1,0 +1,23 @@
+const jwt = require("jsonwebtoken");
+
+module.exports = function (req, res, next) {
+  if (req.method == "OPTIONS") {
+    next();
+  }
+
+  try {
+    console.log(req.headers.authorization);
+    const token = req.headers.authorization.split(" ")[1];
+    console.log("token", token);
+    if (!token) {
+      return res.status(401).json({ message: "not authorized" });
+    }
+
+    var decoded = jwt.verify(token, process.env.SECRET_KEY);
+    req.user = decoded;
+    next();
+  } catch (e) {
+    console.log("error", e);
+    return res.status(401).json({ message: "not authorized" });
+  }
+};
