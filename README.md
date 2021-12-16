@@ -1,5 +1,5 @@
 # Online Shop Node js React
-Максимально простое приложение интернет-магазина, созданное в целях обучения.    
+Very simple online store app designed for learning JavaScript and React.    
 
 ### Technologies
 - server side implementations with node js 
