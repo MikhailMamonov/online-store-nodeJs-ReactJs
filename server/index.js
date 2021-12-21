@@ -16,6 +16,9 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "static")));
 app.use(fileUpload({}));
 app.use("/api", router);
+app.get("/", (req, res) => {
+  res.end("<H1>Home Page</H1>");
+});
 
 //Error handing
 app.use(errorHandingMiddleware);
