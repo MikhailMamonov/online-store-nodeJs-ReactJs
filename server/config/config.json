@@ -15,11 +15,11 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "postgres",
-    "password": "root",
-    "database": "react_shop",
-    "host": "localhost",
     "dialect": "postgres",
+    "protocol": "postgres",
+    "dialectOptions": {
+        "ssl": true
+    },
     "use_env_variable": "DATABASE_URL"
   }
 }
