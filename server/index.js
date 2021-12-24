@@ -1,7 +1,9 @@
 require("dotenv").config();
 
 const express = require("express");
-const sequelize = require("./db");
+//const sequelize = require("./db");
+const db = require("./models");
+
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 
@@ -25,8 +27,8 @@ app.use(errorHandingMiddleware);
 
 const start = async () => {
   try {
-    await sequelize.authenticate();
-    await sequelize.sync();
+    await db.sequelize.authenticate();
+    await db.sequelize.sync();
     app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
   } catch (e) {
     console.log(e);

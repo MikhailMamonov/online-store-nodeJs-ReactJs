@@ -1,12 +1,12 @@
 const ApiError = require("../error/ApiError");
-const { Brand } = require("../models/models");
+const models = require("../models");
 
 class BrandController {
   async create(req, res, next) {
     try {
       debugger;
       const { name } = req.body;
-      const brand = await Brand.create({ name });
+      const brand = await models.brand.create({ name });
       return res.json(brand);
     } catch (e) {
       next(ApiError.internal(e.message));
@@ -14,7 +14,7 @@ class BrandController {
   }
 
   async getAll(req, res) {
-    const brands = await Brand.findAll();
+    const brands = await models.brand.findAll();
     return res.status(200).json(brands);
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-    "engines": {
+  "engines": {
     "node": "14.x"
   },
   "description": "server for ReactShop",
@@ -26,13 +26,11 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "sequelize-cli": "^6.3.0"
   },
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/MikhailMamonov/onlineShop_NodeJs_ReactJs"
   }
 }
-
-
-

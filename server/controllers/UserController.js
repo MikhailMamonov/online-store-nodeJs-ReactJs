@@ -1,7 +1,7 @@
 const ApiError = require("../error/ApiError");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const { User, Basket } = require("../models/models");
+const models = require("../models");
 
 const generateJwtToken = (id, email, role) => {
   return jwt.sign({ id: id, email, role }, process.env.SECRET_KEY, {
@@ -16,8 +16,8 @@ class UserController {
       next(ApiError.badRequest("email or password incorrect"));
     }
 
-    const user = await User.findOne({ where: { email } });
-    console.log(user);
+    const user = await models.user.findOne({ where: { email } });
+
     if (!user) {
       return next(ApiError.badRequest("user not found"));
     }
@@ -35,14 +35,15 @@ class UserController {
     if (!email || !password) {
       return next(ApiError.badRequest("email or password incorrect"));
     }
-    const candidate = await User.findOne({ where: { email } });
+
+    const candidate = await models.user.findOne({ where: { email } });
     if (candidate) {
       return next(ApiError.badRequest("user already exists"));
     }
 
     const hash = await bcrypt.hash(password, 5);
-    const user = await User.create({ email, role, password: hash });
-    const basket = await Basket.create({ userId: user.id });
+    const user = await models.user.create({ email, role, password: hash });
+    const basket = await models.basket.create({ userId: user.id });
     const token = generateJwtToken(user.id, user.email, user.role);
 
     return res.json({ token });

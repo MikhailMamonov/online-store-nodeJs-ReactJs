@@ -1,7 +1,7 @@
 const ApiError = require("../error/ApiError");
 const uuid = require("uuid");
 const path = require("path");
-const { Device, DeviceInfo } = require("../models/models");
+const models = require("../models");
 const { title } = require("process");
 
 class DeviceController {
@@ -11,7 +11,7 @@ class DeviceController {
       const { img } = req.files;
       let fileName = uuid.v4() + ".jpg";
       img.mv(path.resolve(__dirname, "..", "static", fileName));
-      const device = await Device.create({
+      const device = await models.device.create({
         name,
         price,
         brandId,
@@ -20,10 +20,9 @@ class DeviceController {
       });
 
       if (info) {
-        console.log("info", info);
         info = JSON.parse(info);
         info.forEach((i) =>
-          DeviceInfo.create({
+          models.deviceInfo.create({
             title: i.title,
             description: i.description,
             deviceId: device.id,
@@ -45,10 +44,10 @@ class DeviceController {
 
     let devices;
     if (!brandId && !typeId) {
-      devices = await Device.findAndCountAll({ limit, offset });
+      devices = await models.device.findAndCountAll({ limit, offset });
     }
     if (brandId && !typeId) {
-      devices = await Device.findAndCountAll({
+      devices = await models.device.findAndCountAll({
         where: {
           brandId,
         },
@@ -57,7 +56,7 @@ class DeviceController {
       });
     }
     if (!brandId && typeId) {
-      devices = await Device.findAndCountAll({
+      devices = await models.device.findAndCountAll({
         where: {
           typeId,
         },
@@ -67,7 +66,7 @@ class DeviceController {
     }
 
     if (brandId && typeId) {
-      devices = await Device.findAndCountAll({
+      devices = await models.device.findAndCountAll({
         where: {
           brandId,
           typeId,
@@ -88,11 +87,11 @@ class DeviceController {
       next(ApiError.badRequest("id not found"));
     }
 
-    const device = await Device.findOne({
+    const device = await models.device.findOne({
       where: { id },
       include: [
         {
-          model: DeviceInfo,
+          model: models.deviceInfo,
           as: "device_infos",
         },
       ],
