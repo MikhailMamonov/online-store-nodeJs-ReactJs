@@ -6,9 +6,7 @@ import { DEVICE_ROUTE } from "../utils/consts";
 
 const DeviceItem = ({ device }) => {
   const history = useHistory();
-  console.log(
-    "https://online-shop-node-js-reactjs.herokuapp.com/" + device.img
-  );
+  console.log(process.env.REACT_APP_API_URL + device.img);
   return (
     <Col md={3} onClick={() => history.push(DEVICE_ROUTE + "/" + device.id)}>
       <Card
@@ -19,9 +17,7 @@ const DeviceItem = ({ device }) => {
         <Image
           width={150}
           height={150}
-          src={
-            "https://online-shop-node-js-reactjs.herokuapp.com/" + device.img
-          }
+          src={process.env.REACT_APP_API_URL + device.img}
         ></Image>
         <div className="d-flex justify-content-between align-items-center mt-2">
           <div>{device.name}</div>
