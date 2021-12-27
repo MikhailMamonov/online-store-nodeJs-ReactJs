@@ -23,7 +23,9 @@ const DevicePage = () => {
           <Image
             height={250}
             width={250}
-            src={process.env.REACT_APP_API_URL + "/" + device.img}
+            src={
+              "https://online-shop-node-js-reactjs.herokuapp.com/" + device.img
+            }
           ></Image>
         </Col>
         <Col md={4}>
