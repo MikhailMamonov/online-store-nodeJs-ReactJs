@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const $host = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: "https://online-shop-node-js-reactjs.herokuapp.com/",
 });
 
 const $authHost = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: "https://online-shop-node-js-reactjs.herokuapp.com/",
 });
 
 const authInterceptor = (config) => {
