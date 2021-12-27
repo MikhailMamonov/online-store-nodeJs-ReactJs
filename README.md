@@ -13,3 +13,8 @@ Very simple online store app designed for learning JavaScript and React.
 - admin panel 
 - on shop page show all products with pagination
 - filteering by brand or/and type products
+
+
+### Github Pages
+
+**https://mikhailmamonov.github.io/onlineShop_NodeJs_ReactJs/**
