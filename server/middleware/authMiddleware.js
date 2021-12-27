@@ -12,8 +12,7 @@ module.exports = function (req, res, next) {
       return res.status(401).json({ message: "not authorized" });
     }
 
-    //var decoded = jwt.verify(token, process.env.SECRET_KEY);
-    var decoded = jwt.verify(token, "SOME_SECRET_KEY");
+    var decoded = jwt.verify(token, process.env.SECRET_KEY);
     req.user = decoded;
     next();
   } catch (e) {
