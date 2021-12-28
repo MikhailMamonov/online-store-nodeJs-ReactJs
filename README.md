@@ -1,4 +1,4 @@
-# Online Shop Node js React
+# Online Shop (Node js, React)
 Very simple online store app designed for learning JavaScript and React.    
 
 ### Technologies
